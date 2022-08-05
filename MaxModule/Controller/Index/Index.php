@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Amasty\MaxModule\Controller\Index;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\App\ActionInterface;
 
-
-class Index extends Action implements HttpGetActionInterface
+class Index implements ActionInterface
 {
     public function execute()
     {
