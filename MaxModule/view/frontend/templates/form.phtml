@@ -1,0 +1,8 @@
+<div>
+    <form class="<?= $block->escapeHtmlAttr($block->getFormCss()); ?>">
+        <input class="<?= $block->escapeHtmlAttr($block->getInputCss()); ?>" type="text" name="sku" placeholder="Enter  sku...">
+        <input class="<?= $block->escapeHtmlAttr($block->getInputCss()); ?>" type="number" mame="qty" placeholder="Enter quantity...">
+        <?= $block->getChildHtml('Amasty_MaxModule.additional'); ?>
+        <button class="<?= $block->escapeHtmlAttr($block->getBtnCss()); ?>" type="submit" disabled>Send</button>
+    </form>
+</div>
