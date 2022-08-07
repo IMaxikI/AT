@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Amasty_MaxModule::css/index.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="Amasty_MaxModule.main">
+                <block name="Amasty_MaxModule.hello" template="Amasty_MaxModule::hello.phtml"/>
+                <block name="Amasty_MaxModule.form" class="Amasty\MaxModule\Block\Form" template="Amasty_MaxModule::form.phtml">
+                    <arguments>
+                        <argument name="form_css" xsi:type="string">form</argument>
+                        <argument name="input_css" xsi:type="string">form-input</argument>
+                        <argument name="btn_css" xsi:type="string">form-btn</argument>
+                    </arguments>
+                    <block name="Amasty_MaxModule.additional" template="Amasty_MaxModule::additional.phtml"/>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>
