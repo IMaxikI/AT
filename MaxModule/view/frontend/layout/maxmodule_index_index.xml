@@ -7,7 +7,7 @@
     <body>
         <referenceContainer name="content">
             <container name="Amasty_MaxModule.main">
-                <block name="Amasty_MaxModule.hello" template="Amasty_MaxModule::hello.phtml"/>
+                <block name="Amasty_MaxModule.hello" class="Amasty\MaxModule\Block\Hello" template="Amasty_MaxModule::hello.phtml"/>
                 <block name="Amasty_MaxModule.form" class="Amasty\MaxModule\Block\Form" template="Amasty_MaxModule::form.phtml">
                     <arguments>
                         <argument name="form_css" xsi:type="string">form</argument>

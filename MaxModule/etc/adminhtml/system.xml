@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Amasty_MaxModule" translate="label" sortOrder="10">
+            <label>Amasty Max Module</label>
+        </tab>
+        <section id="maxmodule_config" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Max Module Config</label>
+            <tab>Amasty_MaxModule</tab>
+            <resource>Amasty_MaxModule::config</resource>
+            <group id="general" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="module_enabled" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Is Module Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="welcome_text" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Welcome Text</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="qty_field_enabled" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Is Qty Field Show</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="qty_default_value" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Qty Default Value</label>
+                    <validate>integer no-whitespace</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
