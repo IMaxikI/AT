@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Amasty\MaxModule\Controller\Index;
 
-use Amasty\MaxModule\Ui\ConfigProvider;
+use Amasty\MaxModule\Model\ConfigProvider;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Store\Model\StoreManagerInterface;

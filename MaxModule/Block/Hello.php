@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Amasty\MaxModule\Block;
 
-use Amasty\MaxModule\Ui\ConfigProvider;
+use Amasty\MaxModule\Model\ConfigProvider;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\StoreManagerInterface;
 

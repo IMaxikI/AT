@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Amasty\MaxModule\Ui;
+namespace Amasty\MaxModule\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
