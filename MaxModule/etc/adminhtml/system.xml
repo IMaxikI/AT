@@ -17,14 +17,24 @@
                 </field>
                 <field id="welcome_text" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Welcome Text</label>
+                    <depends>
+                        <field id="module_enabled">1</field>
+                    </depends>
                     <validate>required-entry</validate>
                 </field>
                 <field id="qty_field_enabled" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Is Qty Field Show</label>
+                    <depends>
+                        <field id="module_enabled">1</field>
+                    </depends>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="qty_default_value" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Qty Default Value</label>
+                    <depends>
+                        <field id="module_enabled">1</field>
+                        <field id="qty_field_enabled">1</field>
+                    </depends>
                     <validate>integer no-whitespace</validate>
                 </field>
             </group>
