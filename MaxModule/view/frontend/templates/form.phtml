@@ -1,9 +1,19 @@
+<?php
+    /**
+     * @var \Amasty\MaxModule\Block\Form $block
+     */
+?>
 <div>
-    <form class="<?= $block->escapeHtmlAttr($block->getFormCss()); ?>">
-        <input class="<?= $block->escapeHtmlAttr($block->getInputCss()); ?>" type="text" name="sku" placeholder="Enter  sku...">
-        <input class="<?= $block->escapeHtmlAttr($block->getInputCss()); ?>" type="number" mame="qty" placeholder="Enter quantity...">
+    <form class="<?= $block->escapeHtml($block->getFormCss()); ?>" method="post"
+          action="<?= $block->getFormAction(); ?>" data-mage-init='{"validation": {}}'>
+        <input class="<?= $block->escapeHtml($block->getInputCss()); ?>" required="true" type="text" name="sku" placeholder="Enter  sku...">
+        <?php if($block->isShowQtyField()): ?>
+            <input class="<?= $block->escapeHtml($block->getInputCss()); ?>" type="number" required="true"
+                   name="qty" value="<?= $block->getQtyDefaultValue(); ?>" placeholder="Enter quantity..."
+                   data-validate="{'validate-not-negative-number':true}">
+        <?php endif; ?>
         <?= $block->getChildHtml('Amasty_MaxModule.additional'); ?>
-        <button class="<?= $block->escapeHtmlAttr($block->getBtnCss()); ?>" type="submit" disabled>
+        <button class="<?= $block->escapeHtml($block->getBtnCss()); ?>" type="submit">
             <?= __('Send') ?>
         </button>
     </form>

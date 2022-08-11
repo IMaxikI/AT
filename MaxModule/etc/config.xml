@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <maxmodule_config>
+            <general>
+                <module_enabled>1</module_enabled>
+                <qty_field_enabled>1</qty_field_enabled>
+            </general>
+        </maxmodule_config>
+    </default>
+</config>

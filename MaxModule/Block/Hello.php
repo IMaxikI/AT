@@ -8,7 +8,7 @@ use Amasty\MaxModule\Model\ConfigProvider;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\StoreManagerInterface;
 
-class Form extends Template
+class Hello extends Template
 {
     /**
      * @var ConfigProvider
@@ -25,23 +25,16 @@ class Form extends Template
         ConfigProvider $configProvider,
         StoreManagerInterface $storeManager,
         array $data = []
-    ) {
+    )
+    {
         parent::__construct($context, $data);
         $this->configProvider = $configProvider;
         $this->storeManager = $storeManager;
     }
 
-    public function isShowQtyField(){
-        return $this->configProvider->getIsShowQtyField($this->getStoreId());
-    }
-
-    public function getQtyDefaultValue(){
-        return $this->configProvider->getQtyDefaultValue($this->getStoreId());
-    }
-
-    public function getFormAction()
+    public function getWelcomeText()
     {
-        return $this->getUrl('maxmodule/index/submit', ['_secure' => true]);
+        return $this->configProvider->getWelcomeText($this->getStoreId());
     }
 
     private function getStoreId()
