@@ -39,6 +39,11 @@ class Form extends Template
         return $this->configProvider->getQtyDefaultValue($this->getStoreId());
     }
 
+    public function getFormAction()
+    {
+        return $this->getUrl('maxmodule/index/submit', ['_secure' => true]);
+    }
+
     private function getStoreId()
     {
         return $this->storeManager->getStore()->getId();
