@@ -38,15 +38,10 @@ class Index implements ActionInterface
 
     public function execute()
     {
-        if ($this->configProvider->getIsEnabled($this->getStoreId())) {
+        if ($this->configProvider->getIsEnabled($this->storeManager->getStore()->getId())) {
             return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         } else {
             die('Module is disabled');
         }
-    }
-
-    private function getStoreId()
-    {
-        return $this->storeManager->getStore()->getId();
     }
 }

@@ -25,20 +25,14 @@ class Hello extends Template
         ConfigProvider $configProvider,
         StoreManagerInterface $storeManager,
         array $data = []
-    )
-    {
+    ) {
         parent::__construct($context, $data);
         $this->configProvider = $configProvider;
         $this->storeManager = $storeManager;
     }
 
-    public function getWelcomeText()
+    public function getWelcomeText(): string
     {
-        return $this->configProvider->getWelcomeText($this->getStoreId());
-    }
-
-    private function getStoreId()
-    {
-        return $this->storeManager->getStore()->getId();
+        return $this->configProvider->getWelcomeText($this->storeManager->getStore()->getId());
     }
 }

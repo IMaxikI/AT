@@ -1,16 +1,16 @@
-body{
+body {
     border: red 10px solid;
 }
 
-.form{
+.form {
     width: 380px;
 }
 
-.form-input{
+.form-input {
     margin-bottom: 10px;
 }
 
-.form-btn{
+.form-btn {
     background-color: green;
     color: white;
     padding: 7px 30px;
