@@ -23,7 +23,7 @@ abstract class ConfigProviderAbstract
         $this->scopeConfig = $scopeConfig;
     }
 
-    protected function getValue($path, $storeId, $scope = 'store')
+    protected function getValue(string $path, string $storeId, string $scope = 'store'): string
     {
         return $this->scopeConfig->getValue($this->pathPrefix . $path, $scope, $storeId);
     }

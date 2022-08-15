@@ -10,6 +10,8 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class Form extends Template
 {
+    const CONTROLLER_PATH = 'maxmodule/index/submit';
+
     /**
      * @var ConfigProvider
      */
@@ -31,21 +33,18 @@ class Form extends Template
         $this->storeManager = $storeManager;
     }
 
-    public function isShowQtyField(){
-        return $this->configProvider->getIsShowQtyField($this->getStoreId());
-    }
-
-    public function getQtyDefaultValue(){
-        return $this->configProvider->getQtyDefaultValue($this->getStoreId());
-    }
-
-    public function getFormAction()
+    public function isShowQtyField(): string
     {
-        return $this->getUrl('maxmodule/index/submit', ['_secure' => true]);
+        return $this->configProvider->getIsShowQtyField($this->storeManager->getStore()->getId());
     }
 
-    private function getStoreId()
+    public function getQtyDefaultValue(): string
     {
-        return $this->storeManager->getStore()->getId();
+        return $this->configProvider->getQtyDefaultValue($this->storeManager->getStore()->getId());
+    }
+
+    public function getFormAction(): string
+    {
+        return $this->getUrl(self::CONTROLLER_PATH, ['_secure' => true]);
     }
 }
