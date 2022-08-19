@@ -1,5 +1,20 @@
 <div>
-    <p>
-        Здесь будет таймер, который я сделаю в другом задании
-    </p>
+    <div data-bind="scope:'stopwatch'">
+        <!-- ko template : getTemplate() -->
+        <!-- /ko -->
+    </div>
 </div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "stopwatch": {
+                        "component": "Amasty_MaxModule/js/koStopwatch",
+                        "template": "Amasty_MaxModule/koStopwatch"
+                    }
+                }
+            }
+        }
+    }
+</script>
