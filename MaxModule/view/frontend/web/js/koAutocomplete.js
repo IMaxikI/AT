@@ -9,6 +9,7 @@ define(['uiComponent', 'jquery'], function (Component, $) {
         initObservable: function () {
             this._super();
             this.observe(['searchText', 'searchResult', 'inputCss']);
+
             return this;
         },
         initialize: function () {

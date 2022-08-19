@@ -42,7 +42,7 @@ class Autocomplete implements ActionInterface
     public function execute()
     {
         $productCollection = $this->collectionFactory->create();
-        $productCollection->addAttributeToFilter(ProductInterface::SKU, ['like' => '%'. $this->request->getParam(self::SEARCH_PARAM) . '%']);
+        $productCollection->addAttributeToFilter(ProductInterface::SKU, ['like' => '%' . $this->request->getParam(self::SEARCH_PARAM) . '%']);
         $productCollection->addAttributeToSelect(ProductInterface::NAME, true);
 
         $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
