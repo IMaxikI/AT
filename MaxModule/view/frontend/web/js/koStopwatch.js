@@ -5,9 +5,11 @@ define(['uiComponent'], function (Component) {
             hour: 0,
             min: 0,
             sec: 0,
+            delay: 1000,
             timerId: null,
             numberFormat: null,
-            isStarted: false
+            isStarted: false,
+            minIntDigits: 2
         },
         initObservable: function () {
             this._super();
@@ -17,11 +19,14 @@ define(['uiComponent'], function (Component) {
         },
         initialize: function () {
             this._super();
-            this.numberFormat = new Intl.NumberFormat("en-US", {minimumIntegerDigits: 2});
+            this.numberFormat = new Intl.NumberFormat(
+                'en-US',
+                {minimumIntegerDigits: this.minIntDigits}
+            );
         },
         handleStart: function () {
             if (!this.isStarted) {
-                this.timerId = setInterval(this.tick.bind(this), 1000);
+                this.timerId = setInterval(this.tick.bind(this), this.delay);
                 this.isStarted = true;
             }
         },

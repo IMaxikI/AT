@@ -1,9 +1,13 @@
-define(['uiComponent', 'jquery'], function (Component, $) {
+define([
+    'uiComponent',
+    'jquery',
+    'mage/url'
+], function (Component, $, urlBuilder) {
     return Component.extend({
         defaults: {
             searchText: '',
             searchLength: 3,
-            url: 'index/autocomplete',
+            url: urlBuilder.build('index/autocomplete'),
             searchResult: []
         },
         initObservable: function () {

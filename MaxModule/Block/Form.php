@@ -10,7 +10,7 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class Form extends Template
 {
-    const FORM_ACTION = 'maxmodule/index/submit';
+    public const FORM_ACTION = 'maxmodule/index/submit';
 
     /**
      * @var ConfigProvider
