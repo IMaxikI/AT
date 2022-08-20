@@ -17,9 +17,9 @@ use Magento\Quote\Model\QuoteRepository;
 
 class Submit implements ActionInterface
 {
-    const SKU_PARAM = 'sku';
+    public const SKU_PARAM = 'sku';
 
-    const QTY_PARAM = 'qty';
+    public const QTY_PARAM = 'qty';
 
     /**
      * @var ResultFactory
@@ -84,7 +84,7 @@ class Submit implements ActionInterface
 
         try {
             $product = $this->productRepository->get($this->request->getParam(self::SKU_PARAM));
-            $this->isSimple($product);
+            $this->checkIsSimple($product);
             $quote->addProduct($product, $this->request->getParam(self::QTY_PARAM));
             $this->quoteRepository->save($quote);
 
@@ -99,7 +99,10 @@ class Submit implements ActionInterface
         return $resultRedirect;
     }
 
-    private function isSimple(ProductInterface $product): void
+    /**
+     * @throws \Exception
+     */
+    private function checkIsSimple(ProductInterface $product): void
     {
         if($product->getTypeId() !== Type::TYPE_SIMPLE) {
             throw new \Exception(__('This product is not simple.'));

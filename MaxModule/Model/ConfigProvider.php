@@ -6,13 +6,13 @@ namespace Amasty\MaxModule\Model;
 
 class ConfigProvider extends ConfigProviderAbstract
 {
-    const MODULE_ENABLED = 'general/module_enabled';
+    public const MODULE_ENABLED = 'general/module_enabled';
 
-    const WELCOME_TEXT = 'general/welcome_text';
+    public const WELCOME_TEXT = 'general/welcome_text';
 
-    const QTY_FIELD_ENABLED = 'general/qty_field_enabled';
+    public const QTY_FIELD_ENABLED = 'general/qty_field_enabled';
 
-    const QTY_DEFAULT_VALUE = 'general/qty_default_value';
+    public const QTY_DEFAULT_VALUE = 'general/qty_default_value';
 
     /**
      * @var string

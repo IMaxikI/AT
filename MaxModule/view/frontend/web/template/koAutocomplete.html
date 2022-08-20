@@ -1,0 +1,7 @@
+<div>
+    <input id="searchInput" required="true" type="text" data-bind="class : inputCss, textInput: searchText"
+           name="sku" placeholder="Enter  sku..." list="sku">
+    <datalist id="sku" data-bind="foreach: searchResult">
+        <option data-bind="value : sku, text: name"></option>
+    </datalist>
+</div>

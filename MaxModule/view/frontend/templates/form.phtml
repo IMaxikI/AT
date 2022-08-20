@@ -4,10 +4,13 @@
 <div>
     <form class="<?= $block->escapeHtml($block->getFormCss()); ?>" method="post"
           action="<?= $block->getFormAction(); ?>" data-mage-init='{"validation": {}}'>
-        <input class="<?= $block->escapeHtml($block->getInputCss()); ?>" required="true" type="text"
-               name="sku" placeholder="<?= __('Enter  sku...') ?>">
 
-        <?php if($block->isShowQtyField()): ?>
+        <div data-bind="scope:'skuAutocomplete'">
+            <!-- ko template : getTemplate() -->
+            <!-- /ko -->
+        </div>
+
+        <?php if ($block->isShowQtyField()): ?>
             <input class="<?= $block->escapeHtml($block->getInputCss()); ?>" type="number" required="true"
                    name="qty" value="<?= $block->getQtyDefaultValue(); ?>" placeholder="<?= __('Enter quantity...') ?>"
                    data-validate="{'validate-not-negative-number':true}">
@@ -19,3 +22,18 @@
         </button>
     </form>
 </div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "skuAutocomplete": {
+                        "component": "Amasty_MaxModule/js/koAutocomplete",
+                        "template": "Amasty_MaxModule/koAutocomplete",
+                        "inputCss":  "<?= $block->escapeHtml($block->getInputCss()); ?>"
+                    }
+                }
+            }
+        }
+    }
+</script>

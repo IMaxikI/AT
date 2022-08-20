@@ -10,7 +10,7 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class Form extends Template
 {
-    const CONTROLLER_PATH = 'maxmodule/index/submit';
+    public const FORM_ACTION = 'maxmodule/index/submit';
 
     /**
      * @var ConfigProvider
@@ -45,6 +45,6 @@ class Form extends Template
 
     public function getFormAction(): string
     {
-        return $this->getUrl(self::CONTROLLER_PATH, ['_secure' => true]);
+        return $this->getUrl(self::FORM_ACTION, ['_secure' => true]);
     }
 }

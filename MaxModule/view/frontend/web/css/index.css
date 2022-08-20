@@ -13,5 +13,6 @@ body {
 .form-btn {
     background-color: green;
     color: white;
+    margin-top: 10px;
     padding: 7px 30px;
 }
