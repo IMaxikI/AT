@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Amasty_SecondMaxModule" translate="label" sortOrder="20">
+            <label>Amasty Second Max Module</label>
+        </tab>
+        <section id="secondmaxmodule_config" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Second Max Module Config</label>
+            <tab>Amasty_SecondMaxModule</tab>
+            <resource>Amasty_SecondMaxModule::config</resource>
+            <group id="general" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="for_sku" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>For SKU</label>
+                    <validate>no-marginal-whitespace</validate>
+                </field>
+                <field id="promo_sku" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Promo SKU</label>
+                    <validate>no-whitespace</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
