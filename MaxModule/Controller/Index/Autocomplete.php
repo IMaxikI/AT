@@ -14,6 +14,8 @@ class Autocomplete implements ActionInterface
 {
     public const SEARCH_PARAM = 'searchValue';
 
+    public const PAGE_SIZE = 15;
+
     /**
      * @var ResultFactory
      */
@@ -49,7 +51,9 @@ class Autocomplete implements ActionInterface
         $productCollection->addAttributeToSelect(ProductInterface::NAME, true);
 
         $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
-        $resultJson->setData($productCollection->setPageSize(15)->setCurPage(1)->getData());
+        $resultJson->setData(
+            $productCollection->setPageSize(self::PAGE_SIZE)->setCurPage(1)->getData()
+        );
 
         return $resultJson;
     }

@@ -45,6 +45,6 @@ class Form extends Template
 
     public function getFormAction(): string
     {
-        return $this->getUrl(self::FORM_ACTION, ['_secure' => true]);
+        return $this->getUrl(self::FORM_ACTION);
     }
 }
