@@ -151,11 +151,7 @@ class Submit implements ActionInterface
             }
 
             if ($allowedQty >= $this->request->getParam(self::QTY_PARAM)) {
-                $quote->addProduct($product, $this->request->getParam(self::QTY_PARAM));
-
-                $this->messageManager->addSuccessMessage(
-                    __('Product ' . $product->getName() . ' added to cart.')
-                );
+                $this->successAddProduct($quote, $product, (int)$this->request->getParam(self::QTY_PARAM));
             } else {
                 $quote->addProduct($product, $allowedQty);
 
@@ -165,14 +161,19 @@ class Submit implements ActionInterface
             }
 
         } else {
-            $quote->addProduct($product, $this->request->getParam(self::QTY_PARAM));
-
-            $this->messageManager->addSuccessMessage(
-                __('Product ' . $product->getName() . ' added to cart.')
-            );
+            $this->successAddProduct($quote, $product, (int)$this->request->getParam(self::QTY_PARAM));
         }
 
         $this->quoteRepository->save($quote);
+    }
+
+    private function successAddProduct(Quote $quote, ProductInterface $product, int $qty): void
+    {
+        $quote->addProduct($product, $qty);
+
+        $this->messageManager->addSuccessMessage(
+            __('Product ' . $product->getName() . ' added to cart.')
+        );
     }
 
     /**
