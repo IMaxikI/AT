@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Amasty\MaxModule\Controller\Index;
 
-use Amasty\MaxModule\Model\ResourceModel\Blacklist\CollectionFactory as BlacklistCollectionFactory;
+use Amasty\MaxModule\Model\BlacklistRepository;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product\Type;
@@ -67,9 +67,9 @@ class Submit implements ActionInterface
     private $eventManager;
 
     /**
-     * @var BlacklistCollectionFactory
+     * @var BlacklistRepository
      */
-    private $blacklistCollectionFactory;
+    private $blacklistRepository;
 
     public function __construct(
         ResultFactory $resultFactory,
@@ -80,7 +80,7 @@ class Submit implements ActionInterface
         MessageManagerInterface $messageManager,
         QuoteRepository $quoteRepository,
         EventManagerInterface $eventManager,
-        BlacklistCollectionFactory $blacklistCollectionFactory
+        BlacklistRepository $blacklistRepository
     ) {
         $this->resultFactory = $resultFactory;
         $this->request = $request;
@@ -90,7 +90,7 @@ class Submit implements ActionInterface
         $this->messageManager = $messageManager;
         $this->quoteRepository = $quoteRepository;
         $this->eventManager = $eventManager;
-        $this->blacklistCollectionFactory = $blacklistCollectionFactory;
+        $this->blacklistRepository = $blacklistRepository;
     }
 
     public function execute()
@@ -125,16 +125,10 @@ class Submit implements ActionInterface
 
     private function addInQuote(Quote $quote, ProductInterface $product): void
     {
-        /** @var \Amasty\MaxModule\Model\ResourceModel\Blacklist\Collection $blacklistCollection */
-        $blacklistCollection = $this->blacklistCollectionFactory->create();
+        $blacklistProduct = $this->blacklistRepository->get($product->getSku());
 
-        $blacklistCollection->addFieldToFilter(
-            ProductInterface::SKU,
-            ['eq' => $product->getSku()]
-        );
-
-        if ($blacklistCollection->getSize()) {
-            $blacklistQty = $blacklistCollection->getFirstItem()->getQty();
+        if (!$blacklistProduct->isEmpty()) {
+            $blacklistQty = $blacklistProduct->getQty();
 
             $quoteItems = $quote->getItems();
             $qtyInCart = 0;
@@ -157,11 +151,7 @@ class Submit implements ActionInterface
             }
 
             if ($allowedQty >= $this->request->getParam(self::QTY_PARAM)) {
-                $quote->addProduct($product, $this->request->getParam(self::QTY_PARAM));
-
-                $this->messageManager->addSuccessMessage(
-                    __('Product ' . $product->getName() . ' added to cart.')
-                );
+                $this->successAddProduct($quote, $product, (int)$this->request->getParam(self::QTY_PARAM));
             } else {
                 $quote->addProduct($product, $allowedQty);
 
@@ -171,14 +161,19 @@ class Submit implements ActionInterface
             }
 
         } else {
-            $quote->addProduct($product, $this->request->getParam(self::QTY_PARAM));
-
-            $this->messageManager->addSuccessMessage(
-                __('Product ' . $product->getName() . ' added to cart.')
-            );
+            $this->successAddProduct($quote, $product, (int)$this->request->getParam(self::QTY_PARAM));
         }
 
         $this->quoteRepository->save($quote);
+    }
+
+    private function successAddProduct(Quote $quote, ProductInterface $product, int $qty): void
+    {
+        $quote->addProduct($product, $qty);
+
+        $this->messageManager->addSuccessMessage(
+            __('Product ' . $product->getName() . ' added to cart.')
+        );
     }
 
     /**
