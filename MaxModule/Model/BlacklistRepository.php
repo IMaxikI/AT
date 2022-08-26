@@ -36,6 +36,15 @@ class BlacklistRepository
         return $blacklist;
     }
 
+    public function get(string $blacklistSku): Blacklist
+    {
+        $blacklist = $this->blacklistFactory->create();
+
+        $this->blacklistResource->load($blacklist, $blacklistSku, 'sku');
+
+        return $blacklist;
+    }
+
     public function save(Blacklist $blacklist): Blacklist
     {
         $this->blacklistResource->save($blacklist);
