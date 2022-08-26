@@ -9,6 +9,8 @@ use Amasty\MaxModule\Model\ResourceModel\Blacklist as BlacklistResource;
 
 class BlacklistRepository
 {
+    public const FIELD_SKU = 'sku';
+
     /**
      * @var BlacklistResource
      */
@@ -40,7 +42,7 @@ class BlacklistRepository
     {
         $blacklist = $this->blacklistFactory->create();
 
-        $this->blacklistResource->load($blacklist, $blacklistSku, 'sku');
+        $this->blacklistResource->load($blacklist, $blacklistSku, self::FIELD_SKU);
 
         return $blacklist;
     }
