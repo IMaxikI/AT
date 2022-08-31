@@ -14,6 +14,10 @@ class ConfigProvider extends ConfigProviderAbstract
 
     public const QTY_DEFAULT_VALUE = 'general/qty_default_value';
 
+    public const EMAIL = 'email_config/email';
+
+    public const EMAIL_TEMPLATE = 'email_config/email_template';
+
     /**
      * @var string
      */
@@ -37,5 +41,15 @@ class ConfigProvider extends ConfigProviderAbstract
     public function getQtyDefaultValue(string $storeId): string
     {
         return $this->getValue(self::QTY_DEFAULT_VALUE, $storeId);
+    }
+
+    public function getEmail(string $storeId): string
+    {
+        return $this->getValue(self::EMAIL, $storeId);
+    }
+
+    public function getEmailTemplate(string $storeId): string
+    {
+        return $this->getValue(self::EMAIL_TEMPLATE, $storeId);
     }
 }

@@ -6,6 +6,7 @@
         <column xsi:type="int" name="blacklist_id" padding="10" nullable="false" identity="true" unsigned="true"/>
         <column xsi:type="varchar" name="sku" nullable="false" default="" length="255"/>
         <column xsi:type="int" name="qty" padding="10" nullable="false" unsigned="true"/>
+        <column xsi:type="longtext" name="email_body" nullable="true"/>
 
         <constraint xsi:type="primary" referenceId="primary">
             <column name="blacklist_id"/>

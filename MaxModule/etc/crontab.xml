@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="amasty_max_module_cron">
+        <job name="amasty_blacklist_notify"
+             instance="Amasty\MaxModule\Cron\Notify"
+             method="execute">
+            <config_path>maxmodule_config/email_config/generate_cron_schedule</config_path>
+        </job>
+    </group>
+</config>

@@ -35,12 +35,12 @@ class Form extends Template
 
     public function isShowQtyField(): string
     {
-        return $this->configProvider->getIsShowQtyField($this->storeManager->getStore()->getId());
+        return $this->configProvider->getIsShowQtyField((string)$this->storeManager->getStore()->getId());
     }
 
     public function getQtyDefaultValue(): string
     {
-        return $this->configProvider->getQtyDefaultValue($this->storeManager->getStore()->getId());
+        return $this->configProvider->getQtyDefaultValue((string)$this->storeManager->getStore()->getId());
     }
 
     public function getFormAction(): string

@@ -33,6 +33,6 @@ class Hello extends Template
 
     public function getWelcomeText(): string
     {
-        return $this->configProvider->getWelcomeText($this->storeManager->getStore()->getId());
+        return $this->configProvider->getWelcomeText((string)$this->storeManager->getStore()->getId());
     }
 }
