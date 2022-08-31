@@ -1,0 +1,11 @@
+<!--@subject Amasty MaxModule Blacklist Notification @-->
+<!--@vars {
+"var sku":"sku",
+"var qty":"Blacklisted quantity",
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "The product %sku is blacklisted in quantity %qty" sku=$sku qty=$qty}}</p>
+
+{{template config_path="design/email/footer_template"}}

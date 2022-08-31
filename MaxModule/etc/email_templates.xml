@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="maxmodule_config_email_config_email_template"
+              label="Amasty MaxModule Blacklist"
+              file="blacklist_template.html"
+              type="html"
+              module="Amasty_MaxModule"
+              area="frontend"/>
+</config>

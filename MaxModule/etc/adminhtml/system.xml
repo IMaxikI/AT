@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <tab id="Amasty_MaxModule" translate="label" sortOrder="10">
             <label>Amasty Max Module</label>
         </tab>
-        <section id="maxmodule_config" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="maxmodule_config" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
             <label>Max Module Config</label>
             <tab>Amasty_MaxModule</tab>
             <resource>Amasty_MaxModule::config</resource>
@@ -36,6 +38,20 @@
                         <field id="qty_field_enabled">1</field>
                     </depends>
                     <validate>integer no-whitespace</validate>
+                </field>
+            </group>
+            <group id="email_config" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Email Configuration</label>
+                <field id="email" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email</label>
+                    <validate>validate-email</validate>
+                </field>
+                <field id="email_template" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="generate_cron_schedule" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cron Schedule</label>
                 </field>
             </group>
         </section>
