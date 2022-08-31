@@ -6,6 +6,7 @@ namespace Amasty\MaxModule\Plugin\SecondMaxModule\Observer\AddPromoProduct;
 
 use Amasty\SecondMaxModule\Observer\AddPromoProduct;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Event\Observer;
 
 class CheckAjax
 {
@@ -19,10 +20,10 @@ class CheckAjax
         $this->request = $request;
     }
 
-    public function aroundExecute(AddPromoProduct $subject, callable $proceed, ...$args): void
+    public function aroundExecute(AddPromoProduct $subject, callable $proceed, Observer $observer): void
     {
         if (!$this->request->isAjax()) {
-            $proceed(...$args);
+            $proceed($observer);
         }
     }
 }

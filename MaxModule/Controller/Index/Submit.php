@@ -102,15 +102,17 @@ class Submit implements ActionInterface
         }
 
         try {
-            $product = $this->productRepository->get($this->request->getParam(self::SKU_PARAM));
-            $this->checkIsSimple($product);
+            $sku = $this->request->getParam(self::SKU_PARAM);
 
+            $product = $this->productRepository->get($sku);
+
+            $this->checkIsSimple($product);
             $this->addInQuote($quote, $product);
 
             $this->eventManager->dispatch(
                 self::EVENT_NAME,
                 [
-                    'sku' => $this->request->getParam(self::SKU_PARAM)
+                    'sku' => $sku
                 ]
             );
         } catch (\Exception $e) {
@@ -126,6 +128,8 @@ class Submit implements ActionInterface
     private function addInQuote(Quote $quote, ProductInterface $product): void
     {
         $blacklistProduct = $this->blacklistRepository->get($product->getSku());
+
+        $requestQty = (int)$this->request->getParam(self::QTY_PARAM);
 
         if (!$blacklistProduct->isEmpty()) {
             $blacklistQty = $blacklistProduct->getQty();
@@ -150,8 +154,8 @@ class Submit implements ActionInterface
                 return;
             }
 
-            if ($allowedQty >= $this->request->getParam(self::QTY_PARAM)) {
-                $this->successAddProduct($quote, $product, (int)$this->request->getParam(self::QTY_PARAM));
+            if ($allowedQty >= $requestQty) {
+                $this->successAddProduct($quote, $product, $requestQty);
             } else {
                 $quote->addProduct($product, $allowedQty);
 
@@ -161,7 +165,7 @@ class Submit implements ActionInterface
             }
 
         } else {
-            $this->successAddProduct($quote, $product, (int)$this->request->getParam(self::QTY_PARAM));
+            $this->successAddProduct($quote, $product, $requestQty);
         }
 
         $this->quoteRepository->save($quote);
