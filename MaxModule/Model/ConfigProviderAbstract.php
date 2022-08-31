@@ -8,6 +8,8 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 
 abstract class ConfigProviderAbstract
 {
+    public const SCOPE = 'store';
+
     /**
      * @var ScopeConfigInterface
      */
@@ -26,7 +28,7 @@ abstract class ConfigProviderAbstract
     protected function getValue(
         string $path,
         string $storeId,
-        string $scope = 'store'
+        string $scope = self::SCOPE
     ): string
     {
         return $this->scopeConfig->getValue($this->pathPrefix . $path, $scope, $storeId);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Amasty\MaxModule\Controller\Index;
 
 use Magento\Catalog\Api\Data\ProductInterface;
-use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\ResultFactory;
@@ -27,23 +27,23 @@ class Autocomplete implements ActionInterface
     private $request;
 
     /**
-     * @var CollectionFactory
+     * @var ProductCollectionFactory
      */
-    private $collectionFactory;
+    private $productCollectionFactory;
 
     public function __construct(
         ResultFactory $resultFactory,
         RequestInterface $request,
-        CollectionFactory $collectionFactory
+        ProductCollectionFactory $productCollectionFactory
     ) {
         $this->resultFactory = $resultFactory;
         $this->request = $request;
-        $this->collectionFactory = $collectionFactory;
+        $this->productCollectionFactory = $productCollectionFactory;
     }
 
     public function execute()
     {
-        $productCollection = $this->collectionFactory->create();
+        $productCollection = $this->productCollectionFactory->create();
         $productCollection->addAttributeToFilter(
             ProductInterface::SKU,
             ['like' => '%' . $this->request->getParam(self::SEARCH_PARAM) . '%']

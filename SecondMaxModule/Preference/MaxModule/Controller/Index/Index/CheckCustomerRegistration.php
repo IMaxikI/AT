@@ -12,10 +12,17 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class CheckCustomerRegistration extends Index
 {
+    public const HTTP_ERROR_NOT_FOUND = 404;
+
     /**
      * @var Session
      */
     private $session;
+
+    /**
+     * @var ResultFactory
+     */
+    private $resultFactory;
 
     public function __construct(
         ResultFactory $resultFactory,
@@ -25,6 +32,7 @@ class CheckCustomerRegistration extends Index
     ) {
         parent::__construct($resultFactory, $configProvider, $storeManager);
         $this->session = $session;
+        $this->resultFactory = $resultFactory;
     }
 
     public function execute()
@@ -32,7 +40,10 @@ class CheckCustomerRegistration extends Index
         if($this->session->isLoggedIn()) {
             return parent::execute();
         } else {
-            die(__('Please login to your account'));
+            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
+            $resultRedirect->setHttpResponseCode(self::HTTP_ERROR_NOT_FOUND);
+
+            return $resultRedirect;
         }
     }
 }
