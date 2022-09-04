@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Amasty\MaxModule\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 
 abstract class ConfigProviderAbstract
 {
-    public const SCOPE = 'store';
-
     /**
      * @var ScopeConfigInterface
      */
@@ -27,8 +26,8 @@ abstract class ConfigProviderAbstract
 
     protected function getValue(
         string $path,
-        string $storeId,
-        string $scope = self::SCOPE
+        int $storeId,
+        string $scope = ScopeInterface::SCOPE_STORE
     ): string
     {
         return $this->scopeConfig->getValue($this->pathPrefix . $path, $scope, $storeId);
