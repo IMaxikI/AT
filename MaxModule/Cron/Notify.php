@@ -56,18 +56,18 @@ class Notify
         $this->blacklistRepository = $blacklistRepository;
     }
 
-    public function execute()
+    public function execute(): void
     {
         /** @var \Amasty\MaxModule\Model\ResourceModel\Blacklist\Collection $blacklistCollection */
         $blacklistCollection = $this->blacklistCollectionFactory->create();
 
-        if($blacklistCollection->getSize() === 0) {
+        if ($blacklistCollection->getSize() === 0) {
             return;
         }
 
         $blacklistItem = $blacklistCollection->getFirstItem();
 
-        $storeId = (string)$this->storeManager->getStore()->getId();
+        $storeId = (int)$this->storeManager->getStore()->getId();
 
         $vars = [
             'sku' => $blacklistItem->getSku(),

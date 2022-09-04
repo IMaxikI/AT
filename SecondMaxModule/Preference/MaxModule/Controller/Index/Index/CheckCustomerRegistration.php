@@ -8,12 +8,11 @@ use Amasty\MaxModule\Controller\Index\Index;
 use Amasty\MaxModule\Model\ConfigProvider;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Webapi\Exception;
 use Magento\Store\Model\StoreManagerInterface;
 
 class CheckCustomerRegistration extends Index
 {
-    public const HTTP_ERROR_NOT_FOUND = 404;
-
     /**
      * @var Session
      */
@@ -41,7 +40,7 @@ class CheckCustomerRegistration extends Index
             return parent::execute();
         } else {
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
-            $resultRedirect->setHttpResponseCode(self::HTTP_ERROR_NOT_FOUND);
+            $resultRedirect->setHttpResponseCode(Exception::HTTP_NOT_FOUND);
 
             return $resultRedirect;
         }

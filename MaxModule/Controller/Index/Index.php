@@ -9,12 +9,11 @@ use Magento\Framework\App\ActionInterface;
 use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\UrlInterface;
+use Magento\Framework\Webapi\Exception;
 use Magento\Store\Model\StoreManagerInterface;
 
 class Index implements ActionInterface
 {
-    public const HTTP_ERROR_NOT_FOUND = 404;
-
     /**
      * @var ResultFactory
      */
@@ -56,11 +55,11 @@ class Index implements ActionInterface
 
     public function execute()
     {
-        if ($this->configProvider->getIsEnabled((string)$this->storeManager->getStore()->getId())) {
+        if ($this->configProvider->getIsEnabled((int)$this->storeManager->getStore()->getId())) {
             return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         } else {
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
-            $resultRedirect->setHttpResponseCode(self::HTTP_ERROR_NOT_FOUND);
+            $resultRedirect->setHttpResponseCode(Exception::HTTP_NOT_FOUND);
 
             return $resultRedirect;
         }

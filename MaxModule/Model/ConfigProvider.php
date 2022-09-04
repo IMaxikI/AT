@@ -23,32 +23,32 @@ class ConfigProvider extends ConfigProviderAbstract
      */
     protected $pathPrefix = 'maxmodule_config/';
 
-    public function getIsEnabled(string $storeId): string
+    public function getIsEnabled(int $storeId): string
     {
         return $this->getValue(self::MODULE_ENABLED, $storeId);
     }
 
-    public function getWelcomeText(string $storeId): string
+    public function getWelcomeText(int $storeId): string
     {
         return $this->getValue(self::WELCOME_TEXT, $storeId);
     }
 
-    public function getIsShowQtyField(string $storeId): string
+    public function getIsShowQtyField(int $storeId): string
     {
         return $this->getValue(self::QTY_FIELD_ENABLED, $storeId);
     }
 
-    public function getQtyDefaultValue(string $storeId): string
+    public function getQtyDefaultValue(int $storeId): string
     {
         return $this->getValue(self::QTY_DEFAULT_VALUE, $storeId);
     }
 
-    public function getEmail(string $storeId): string
+    public function getEmail(int $storeId): string
     {
         return $this->getValue(self::EMAIL, $storeId);
     }
 
-    public function getEmailTemplate(string $storeId): string
+    public function getEmailTemplate(int $storeId): string
     {
         return $this->getValue(self::EMAIL_TEMPLATE, $storeId);
     }
